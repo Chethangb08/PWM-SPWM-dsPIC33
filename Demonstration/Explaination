@@ -1,0 +1,82 @@
+Hi everyone! 👋
+
+Thanks for checking out this repository.
+
+Here, I'll explain the demonstration that my teammates and I presented at ELIXIR-2026, held at NMAM Institute of Technology (NMAMIT), Nitte.
+
+The demonstration covered Pulse Width Modulation (PWM) and Sinusoidal Pulse Width Modulation (SPWM) using the Microchip dsPIC33 Digital Signal Controller.
+
+Our goal wasn't just to make a motor run — we wanted to show why different modulation techniques matter and how they affect the performance of a three-phase induction motor.
+
+🤔 First of all... why do we even need PWM?
+
+This was probably the first question that came to mind when I started learning power electronics.
+
+Imagine you have a DC supply of around 310V after rectification. If you connect that directly to a three-phase motor, it simply won't work — the motor needs three-phase AC, not DC.
+
+So the question becomes: how do we convert DC into AC?
+
+That's where an inverter comes in. But the inverter doesn't magically create AC — it simply turns its switches ON and OFF thousands of times every second.
+
+Who tells those switches when to turn ON and OFF? That's exactly what the dsPIC33 does — it generates the gate pulses that control the inverter switches.
+
+⚡ So what exactly is PWM?
+
+PWM stands for Pulse Width Modulation.
+
+Instead of changing the voltage directly, we change how long each pulse stays ON:
+
+If a switch stays ON for a longer time, the average voltage increases.
+If it stays ON for a shorter time, the average voltage decreases.
+
+That's the basic idea behind PWM. It may look like we're only generating square pulses, but those pulses are actually controlling how much power reaches the motor.
+
+🤨 But then... why doesn't PWM produce a perfect sine wave?
+
+This is something I found really interesting.
+
+The inverter output is basically switching between ON and OFF very rapidly. Because of these sudden transitions, the output waveform is no longer a smooth sine wave.
+
+Whenever a waveform has sharp edges, it contains additional frequency components — these unwanted frequencies are called harmonics. You can think of harmonics as extra "noise" mixed in with the original 50 Hz signal.
+
+The motor doesn't want those frequencies — it only wants a clean 50 Hz sine wave.
+
+😕 Why are harmonics a problem?
+
+When harmonics are present, the motor still runs — but not as efficiently. Some of the effects include:
+
+The motor becomes hotter due to extra losses.
+Torque becomes slightly uneven, causing vibration.
+You may hear more humming or noise.
+Efficiency decreases.
+Electromagnetic interference (EMI) increases.
+
+So yes, the motor works, but it isn't operating under the best conditions.
+
+💡 So how can we improve it?
+
+This is where SPWM comes into the picture.
+
+SPWM stands for Sinusoidal Pulse Width Modulation. Instead of keeping every pulse the same width, we continuously vary the pulse width according to a sine wave — the pulses become narrow, then wider, then widest, and then narrow again.
+
+When you observe the average value of all those pulses, it closely follows a sine wave. That's why SPWM gives much better output quality than standard PWM.
+
+💻 Why did we use the dsPIC33?
+
+For this demonstration, we used the Microchip dsPIC33 Digital Signal Controller because it's specifically designed for applications like motor control and power electronics.
+
+It has built-in PWM modules, fast timers, ADC support, complementary PWM outputs, and dead-time generation — making it a great choice for controlling a three-phase inverter in real time.
+
+🎯 About this demonstration
+
+This demonstration was presented at ELIXIR-2026, held at NMAM Institute of Technology (NMAMIT), Nitte.
+
+It was a great opportunity for us to explain these concepts practically instead of only studying them in textbooks.
+
+This demonstration was carried out as a team by:
+
+Chethan G B
+Harshit D
+Kruthi Nerle
+
+Working on this together helped us understand not only how PWM and SPWM are generated, but also why these techniques matter so much in real-world motor drive applications.
